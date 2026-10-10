@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Marketing Management</title>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main class="wrap">
+  <section class="home-hero">
+    <span class="label" id="cohort"></span>
+    <h1>Marketing Management</h1>
+    <p>Cases, frameworks and quizzes for the three evening lectures.</p>
+    <div class="home-cta">
+      <a class="btn primary" href="six-decisions.html">Open the booklet</a>
+      <a class="btn" href="quizzes.html">Take a quiz</a>
+    </div>
+  </section>
+  <section class="page-list" id="page-list"></section>
+  <section>
+    <h2 class="section-title">Test yourself.</h2>
+    <div class="quiz-grid" id="home-quizzes"></div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="site.js"></script>
+<script>
+  (function () {
+    const S = window.SITE;
+    document.getElementById("cohort").textContent = S.cohort;
+    document.getElementById("page-list").innerHTML = S.pages.filter((p) => p.href !== "./").map((p) =>
+      '<a class="page-link" href="' + p.href + '"><h2>' + S.esc(p.label) + '</h2><p>' + S.esc(p.desc) + '</p><span class="more">Open</span></a>').join("");
+    document.getElementById("home-quizzes").innerHTML = S.quizzes.map((q) => S.quizCard(q)).join("");
+  })();
+</script>
+</body>
+</html>

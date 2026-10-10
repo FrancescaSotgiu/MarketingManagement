@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Six Marketing Decisions</title>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div id="site-header"></div>
+<nav class="toc" aria-label="Contents">
+  <div class="wrap">
+    <span class="toc-title">Six decisions</span>
+    <ol id="toc-list"></ol>
+  </div>
+</nav>
+<main class="wrap booklet">
+  <header class="bk-head">
+    <span class="label">Booklet · Lectures 1 to 3</span>
+    <h1>Six marketing decisions.</h1>
+    <p>Six short cases, each one a decision a real organisation could face tomorrow. Every slide comes with the explanation from class, linked to the frameworks and to a quiz.</p>
+    <div class="bk-actions">
+      <a class="btn primary" href="#c1">Start with case 1</a>
+      <a class="btn" href="frameworks.html">All frameworks</a>
+      <button class="btn" type="button" id="edit-toggle">Edit slides</button>
+    </div>
+  </header>
+  <div id="parts"></div>
+  <section class="sources" id="sources-list"></section>
+</main>
+
+<div class="edit-bar" role="region" aria-label="Edit mode">
+  <div class="wrap">
+    <span class="status" id="edit-status"></span>
+    <button class="btn" type="button" id="edit-export">Export content file</button>
+    <button class="btn" type="button" id="edit-reset">Discard edits</button>
+    <button class="btn" type="button" id="edit-done">Done</button>
+  </div>
+</div>
+
+<div class="panel" id="export-panel" hidden>
+  <div class="panel-card" role="dialog" aria-labelledby="export-title">
+    <h2 id="export-title">Export content file</h2>
+    <p>Your edits are saved in this browser only. To publish them, replace <code>six-decisions.js</code> in your GitHub repository with the text below.</p>
+    <div class="note-box">Uploaded images are stored inside this file and make it large. For the website, it is better to add the image to <code>img</code> and type its path in the image field.</div>
+    <label class="label" for="export-text">six-decisions.js</label>
+    <textarea id="export-text" readonly spellcheck="false"></textarea>
+    <div class="actions">
+      <button class="btn" type="button" id="export-download">Download file</button>
+      <button class="btn primary" type="button" id="export-copy">Copy</button>
+      <button class="btn" type="button" id="export-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="sources.js"></script>
+<script src="six-decisions.js"></script>
+<script src="site.js"></script>
+<script src="booklet.js"></script>
+</body>
+</html>

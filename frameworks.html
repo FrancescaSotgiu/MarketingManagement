@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Course Frameworks</title>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main class="wrap">
+  <header class="page-head">
+    <span class="label">Exam preparation</span>
+    <h1>Frameworks</h1>
+    <p>The frameworks used in the six cases, grouped by lecture. For each one: a short definition, the cases where it applies, and a quiz to practise it.</p>
+  </header>
+  <div id="fw"></div>
+  <section class="sources" id="sources-list"></section>
+</main>
+<div id="site-footer"></div>
+<script src="sources.js"></script>
+<script src="frameworks.js"></script>
+<script src="six-decisions.js"></script>
+<script src="site.js"></script>
+<script>
+  (function () {
+    const S = window.SITE, esc = S.esc;
+    const used = {};
+    window.BOOKLET.slides.forEach((s) => (s.cols || []).forEach((c) => { (used[c.fw] = used[c.fw] || []).push(s); }));
+    const titles = {
+      L1: "Lecture 1 · Value, customers and strategy",
+      L2: "Lecture 2 · Product, brand and price",
+      L3: "Lecture 3 · Communication and channels"
+    };
+    document.getElementById("fw").innerHTML = ["L1", "L2", "L3"].map((L) => '<section class="fw-lecture"><h2>' + titles[L] + '</h2><div class="fw-list">' +
+      window.FRAMEWORKS.filter((f) => f.lecture === L).map((f) => {
+        const q = S.quiz(f.quiz);
+        const cases = (used[f.id] || []).map((s) => '<a href="six-decisions.html#' + s.id + '">Case ' + s.case + "</a>").join(", ");
+        return '<article class="fw-item" id="' + f.id + '"><span class="label">' + L + "</span><h3>" + esc(f.name) + "</h3><p>" + S.cite(f.text) + '</p><div class="fw-meta">' +
+          (cases ? "<span>Used in " + cases + "</span>" : "") +
+          (q ? '<a href="' + esc(q.url) + '" target="_blank" rel="noopener">Practise: ' + esc(q.title) + " quiz</a>" : "") + "</div></article>";
+      }).join("") + "</div></section>").join("");
+    S.renderSources(document.getElementById("sources-list"));
+    if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) setTimeout(() => t.scrollIntoView(), 50); }
+  })();
+</script>
+</body>
+</html>

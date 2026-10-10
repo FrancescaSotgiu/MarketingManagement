@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Marketing Quizzes</title>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main class="wrap">
+  <header class="page-head">
+    <span class="label">Test yourself</span>
+    <h1>Quizzes</h1>
+    <p>Take a quiz before a lecture to see what you already know, and again afterwards to see what you learned. Scores are not recorded.</p>
+    <p class="embed-note" id="embed-note"></p>
+  </header>
+  <div class="quiz-grid" id="quizzes"></div>
+</main>
+<div id="site-footer"></div>
+<script src="site.js"></script>
+<script>
+  (function () {
+    const S = window.SITE;
+    document.getElementById("quizzes").innerHTML = S.quizzes.map((q) => S.quizCard(q)).join("");
+    document.getElementById("embed-note").textContent = S.canEmbed() ? "" : "On the course website the quizzes open inside this page. Here they open in a new tab.";
+  })();
+</script>
+</body>
+</html>

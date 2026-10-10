@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- New page: copy this file, rename it (for example lecture-2.html),
+     change the title and content, then add it to "pages" in site.js. -->
+<title>New Page</title>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main class="wrap">
+  <header class="page-head">
+    <span class="label">Section label</span>
+    <h1>Page title</h1>
+    <p>One or two sentences that tell students what this page is for.</p>
+  </header>
+
+  <section style="max-width:66ch">
+    <h2 style="font-size:30px">A heading</h2>
+    <p id="text">Write here. To cite a source, add it to sources.js and write its id in double square brackets, as in this sentence [[kotler]].</p>
+  </section>
+
+  <section style="margin-top:40px">
+    <div class="quiz-grid" id="quiz"></div>
+  </section>
+
+  <section class="sources" id="sources-list"></section>
+</main>
+<div id="site-footer"></div>
+<script src="sources.js"></script>
+<script src="site.js"></script>
+<script>
+  (function () {
+    const S = window.SITE;
+    /* Turn [[id]] markers into numbered citations */
+    const t = document.getElementById("text");
+    t.innerHTML = S.cite(t.textContent);
+    /* Show a quiz card: use an id from SITE.quizzes */
+    document.getElementById("quiz").innerHTML = S.quizCard(S.quiz("intro2"));
+    S.renderSources(document.getElementById("sources-list"));
+  })();
+</script>
+</body>
+</html>
