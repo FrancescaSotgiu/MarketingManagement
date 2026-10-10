@@ -12,7 +12,7 @@ window.BOOKLET = {
    "n": 1,
    "title": "The physio subscription",
    "sector": "Physiotherapy and fitness",
-   "quiz": "l2a",
+   "quiz": "advanced",
    "real": []
   },
   {

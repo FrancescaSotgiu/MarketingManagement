@@ -11,18 +11,21 @@ window.SITE = {
     { href: "quizzes.html", label: "Quizzes", desc: "Test yourself before and after each lecture." }
   ],
   quizzes: [
-    { id: "intro", title: "Marketing Mastery", lecture: "L1",
-      desc: "Warm-up game: theory questions on the marketing mix and segmentation, then three short cases.",
-      url: "https://francescabds.github.io/Marketing-Intro-Quizz/" },
-    { id: "intro2", title: "Markets, value and strategy", lecture: "L1",
-      desc: "Thirteen concept questions on needs, market offerings, value and strategy, then two application cases.",
-      url: "https://francescabds.github.io/Marketing-Intro-Quizz-2/" },
-    { id: "l2a", title: "Products and brands", lecture: "L2",
-      desc: "Ten concept questions on product levels, product mix and brand equity, then a five-question case.",
-      url: "https://francescabds.github.io/Marketing-L2a-Quiz/" },
-    { id: "exam", title: "4Ps practice exam", lecture: "L2–L3",
-      desc: "Open questions on product, price, place and promotion with model answers after each question.",
-      url: "https://francescabds.github.io/Marketing-Exam/" }
+    { id: "intro", title: "Quiz 1: Marketing basics", lecture: "L1",
+      desc: "Eight theory questions, then three real-world case studies with a full analysis.",
+      url: "https://francescasotgiu.github.io/MarketingIntroQuizz/" },
+    { id: "intro2", title: "Quiz 2: Markets, value and strategy", lecture: "L1",
+      desc: "Thirteen concept questions on markets, value and strategy, then two application cases.",
+      url: "https://francescasotgiu.github.io/MarketingQuizz2/" },
+    { id: "l2a", title: "Quiz 3: Products and brands", lecture: "L2",
+      desc: "Ten concept questions on products, brands and the product life cycle, then five NovaBrew cases.",
+      url: "https://francescasotgiu.github.io/MarketingQuizz3/" },
+    { id: "exam", title: "Practice exam: the 4 Ps", lecture: "L2–L3",
+      desc: "Two-hour open-book exam in six sections, from product to integration, with model answers after each question.",
+      url: "https://francescasotgiu.github.io/MarketingPracticeExam/" },
+    { id: "advanced", title: "Advanced practice exam: Kern", lecture: "L1–L3",
+      desc: "Eight case questions on a chain of physiotherapy and wellness centres: segmentation, membership pricing, customer value, campaign results and channels.",
+      url: "https://francescasotgiu.github.io/MarketingAdvancedPracticeExam/" }
   ]
 };
 
