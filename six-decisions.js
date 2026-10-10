@@ -5,7 +5,7 @@
 window.BOOKLET = {
  "title": "Six marketing decisions",
  "subtitle": "Mini-cases for Lectures 1 to 3",
- "footer": "Marketing | Premaster MSc BA",
+ "footer": "Marketing Management",
  "date": "Fall 2026",
  "cases": [
   {
