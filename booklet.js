@@ -115,6 +115,7 @@
       <div class="part" id="${p.id}">
         <div class="part-head"><span class="label">${esc(p.n ? `Case ${p.n} · ${p.sector}` : p.label)}</span><h2>${esc(p.sub)}</h2></div>
         ${p.slides.map(([s, i]) => blockHTML(s, i) + (/^c\d-frameworks$/.test(s.id) ? caseExtras(+s.id[1]) : "")).join("")}
+        ${p.id === "part-wrap" ? S.practiceBox() : ""}
       </div>`).join("");
     S.renderSources(document.getElementById("sources-list"));
     document.querySelectorAll("[data-edit]").forEach((el) => { el.contentEditable = editing ? "true" : "false"; });

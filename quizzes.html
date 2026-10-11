@@ -17,6 +17,7 @@
     <p class="embed-note" id="embed-note"></p>
   </header>
   <div class="quiz-grid" id="quizzes"></div>
+  <div id="practice"></div>
 </main>
 <div id="site-footer"></div>
 <script src="site.js"></script>
@@ -24,6 +25,7 @@
   (function () {
     const S = window.SITE;
     document.getElementById("quizzes").innerHTML = S.quizzes.map((q) => S.quizCard(q)).join("");
+    document.getElementById("practice").innerHTML = S.practiceBox();
     document.getElementById("embed-note").textContent = S.canEmbed() ? "" : "On the course website the quizzes open inside this page. Here they open in a new tab.";
   })();
 </script>

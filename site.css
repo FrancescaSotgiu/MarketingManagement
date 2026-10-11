@@ -209,3 +209,13 @@ body.editing { padding-bottom: 76px; }
 .panel-card .actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
 .note-box { background: var(--note); color: var(--note-ink); border-radius: 12px; padding: 12px 14px; font-size: 14px; }
 @media (max-width: 640px) { .speech { font-size: 17px; } .slide { border-radius: 12px; } .slide-block { padding-block: 28px; } }
+
+/* Further practice box */
+.practice-box { margin: 56px 0 0; background: var(--ink); color: #f5f5f7; border-radius: 22px; padding: 40px; display: flex; gap: 28px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.practice-box .practice-text { flex: 1 1 380px; min-width: 0; display: grid; gap: 10px; }
+.practice-box .label { color: #5bb8e8; }
+.practice-box h2 { font-size: clamp(28px, 4vw, 40px); color: #fff; }
+.practice-box p { margin: 0; color: #c7c7cc; max-width: 60ch; }
+.practice-box .btn.primary { background: #fff; color: var(--ink); border-color: #fff; flex: 0 0 auto; }
+.practice-box .btn.primary:hover { background: #e8e8ed; }
+@media (max-width: 640px) { .practice-box { padding: 28px; } }

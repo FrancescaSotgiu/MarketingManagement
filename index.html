@@ -23,6 +23,7 @@
   <section>
     <h2 class="section-title">Test yourself.</h2>
     <div class="quiz-grid" id="home-quizzes"></div>
+    <div id="home-practice"></div>
   </section>
 </main>
 <div id="site-footer"></div>
@@ -34,6 +35,7 @@
     document.getElementById("page-list").innerHTML = S.pages.filter((p) => p.href !== "./").map((p) =>
       '<a class="page-link" href="' + p.href + '"><h2>' + S.esc(p.label) + '</h2><p>' + S.esc(p.desc) + '</p><span class="more">Open</span></a>').join("");
     document.getElementById("home-quizzes").innerHTML = S.quizzes.map((q) => S.quizCard(q)).join("");
+    document.getElementById("home-practice").innerHTML = S.practiceBox();
   })();
 </script>
 </body>

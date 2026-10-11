@@ -3,13 +3,19 @@
 window.SITE = {
   name: "Marketing Management",
   course: "Marketing Management - F. Sotgiu",
-  cohort: "Premaster MSc BA · VU for Professionals · Fall 2026",
+  cohort: "Supplementary Material Fall 2026",
   pages: [
     { href: "./", label: "Home", desc: "Start here." },
     { href: "six-decisions.html", label: "Six decisions", desc: "The case booklet for Lectures 1 to 3: every slide with its explanation, linked to the frameworks and the quizzes." },
     { href: "frameworks.html", label: "Frameworks", desc: "The course frameworks in one place, by lecture, with the cases that use them." },
     { href: "quizzes.html", label: "Quizzes", desc: "Test yourself before and after each lecture." }
   ],
+  practice: {
+    title: "Marketing Decision Studio",
+    desc: "Work through a real marketing decision step by step: frame the decision, analyse the environment, market and firm, choose the marketing mix and weigh short- and long-run outcomes. Your answers stay in your browser.",
+    cta: "Open the Decision Studio",
+    url: "https://francescasotgiu.com/tools/marketing-decision-studio/"
+  },
   quizzes: [
     { id: "intro", title: "Quiz 1: Marketing basics", lecture: "L1",
       desc: "Eight theory questions, then three real-world case studies with a full analysis.",
@@ -78,6 +84,19 @@ window.SITE = {
       <div id="${id}"></div>
     </div>`;
   };
+  S.practiceBox = function () {
+    const p = S.practice;
+    if (!p) return "";
+    return `<aside class="practice-box" aria-label="Further practice">
+      <div class="practice-text">
+        <span class="label">Further practice</span>
+        <h2>${esc(p.title)}</h2>
+        <p>${esc(p.desc)}</p>
+      </div>
+      <a class="btn primary" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.cta)}</a>
+    </aside>`;
+  };
+
   document.addEventListener("click", (e) => {
     const b = e.target.closest("[data-embed]");
     if (!b) return;
