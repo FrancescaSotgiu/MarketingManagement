@@ -42,7 +42,7 @@
     }
     if (s.kind === "columns") {
       inner = `<h3 data-edit="title">${esc(s.title)}</h3><div class="cols">${s.cols.map((c, j) => `
-        <div class="col"><h4><span class="lec">${esc(c.lecture)}</span><a href="frameworks.html#${esc(c.fw)}" data-edit="cols.${j}.name">${esc(c.name)}</a></h4>
+        <div class="col"><h4><span class="lec">${esc(c.lecture)}</span><span data-edit="cols.${j}.name">${esc(c.name)}</span></h4>
         <p data-edit="cols.${j}.text">${esc(c.text)}</p></div>`).join("")}</div>`;
     } else {
       inner = `<h3 data-edit="title">${esc(s.title)}</h3><ul>${(s.items || []).map((t, j) => `<li data-edit="items.${j}">${esc(t)}</li>`).join("")}</ul>`;
@@ -50,10 +50,8 @@
     return `<div class="${cls}">${logo}<div class="s-inner">${inner}</div>${side}${foot}</div>`;
   }
 
-  function speechHTML(s) {
-    if (editing) return `<div class="speech" data-edit="speech">${esc(s.speech)}</div>`;
-    return `<div class="speech"><p>${S.cite(s.speech)}</p></div>`;
-  }
+  /* Slides only: the spoken explanation is kept in six-decisions.js but not shown. */
+  function speechHTML(s) { return ""; }
 
   function toolsHTML(s) {
     const shown = s.image && s.image.startsWith("data:") ? "(uploaded image)" : (s.image || "");
@@ -81,12 +79,8 @@
   }
 
   function caseExtras(n) {
-    const c = caseOf(n), q = S.quiz(c.quiz);
     const prev = caseOf(n - 1), next = caseOf(n + 1);
-    const real = (c.real || []).length ? `<div class="extra"><span class="label">In the real world</span>${c.real.map((r) =>
-      `<p>${S.cite(r.text + " [[" + r.src + "]]")}</p>`).join("")}</div>` : "";
-    return `<div class="case-extra">${q ? S.quizCard(q, { desc: `Practise the frameworks behind case ${n}. ${q.desc}` }) : ""}${real}</div>
-      <nav class="case-nav" aria-label="Cases">
+    return `<nav class="case-nav" aria-label="Cases">
         ${prev ? `<a href="#c${prev.n}">← Case ${prev.n}: ${esc(prev.title)}</a>` : `<a href="#cover">← Introduction</a>`}
         ${next ? `<a href="#c${next.n}">Case ${next.n}: ${esc(next.title)} →</a>` : `<a href="#thread">Wrap-up →</a>`}
       </nav>`;
@@ -109,15 +103,13 @@
   function render() {
     const g = groups();
     document.getElementById("toc-list").innerHTML = g.map((p, k) =>
-      `<li><a href="#${p.slides[0] ? esc(p.slides[0][0].id) : p.id}" data-part="${p.id}" title="${esc(p.sub)}"><span class="n">${k === 0 ? "In" : k === g.length - 1 ? "Wr" : p.n}</span><span>${esc(p.n ? "Case " + p.n : p.label)}</span></a></li>`).join("") +
-      `<li><a href="#sources-list" data-part="sources"><span class="n">§</span><span>Sources</span></a></li>`;
+      `<li><a href="#${p.slides[0] ? esc(p.slides[0][0].id) : p.id}" data-part="${p.id}" title="${esc(p.sub)}"><span class="n">${k === 0 ? "In" : k === g.length - 1 ? "Wr" : p.n}</span><span>${esc(p.n ? "Case " + p.n : p.label)}</span></a></li>`).join("");
     document.getElementById("parts").innerHTML = g.map((p) => `
       <div class="part" id="${p.id}">
         <div class="part-head"><span class="label">${esc(p.n ? `Case ${p.n} · ${p.sector}` : p.label)}</span><h2>${esc(p.sub)}</h2></div>
         ${p.slides.map(([s, i]) => blockHTML(s, i) + (/^c\d-frameworks$/.test(s.id) ? caseExtras(+s.id[1]) : "")).join("")}
-        ${p.id === "part-wrap" ? S.practiceBox() : ""}
       </div>`).join("");
-    S.renderSources(document.getElementById("sources-list"));
+    const src = document.getElementById("sources-list"); if (src) src.hidden = true;
     document.querySelectorAll("[data-edit]").forEach((el) => { el.contentEditable = editing ? "true" : "false"; });
     watchToc();
   }
@@ -158,7 +150,7 @@
     const y = window.scrollY;
     render();
     window.scrollTo(0, y);
-    status(on ? "Click any text on a slide or below it to change it." : "");
+    status(on ? "Click any text on a slide to change it." : "");
   }
 
   document.addEventListener("input", (e) => {

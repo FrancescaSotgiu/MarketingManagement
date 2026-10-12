@@ -4,9 +4,10 @@ window.SITE = {
   name: "Marketing Management",
   course: "Marketing Management - F. Sotgiu",
   cohort: "Supplementary Material Fall 2026",
+  website: "https://francescasotgiu.com",
   pages: [
     { href: "./", label: "Home", desc: "Start here." },
-    { href: "six-decisions.html", label: "Six decisions", desc: "The case booklet for Lectures 1 to 3: every slide with its explanation, linked to the frameworks and the quizzes." },
+    { href: "six-decisions.html", label: "Six decisions", desc: "The slides of the six cases from Lectures 1 to 3." },
     { href: "https://francescasotgiu.com/tools/marketing-decision-studio/", label: "Decision Studio", external: true, desc: "Work through a real marketing decision step by step, from the environment to the marketing mix and its outcomes." },
     { href: "quizzes.html", label: "Quizzes", desc: "Test yourself before and after each lecture." }
   ],
@@ -111,11 +112,11 @@ window.SITE = {
     return `<header class="site-header"><div class="wrap">
       <a class="brand" href="./"><img src="vu-logo.jpg" alt="Vrije Universiteit Amsterdam"><span>${esc(S.name)}</span></a>
       <nav class="site-nav" aria-label="Site">${S.pages.map((p) =>
-        `<a href="${p.href}"${p.href === here ? ' aria-current="page"' : ""}${p.external ? ' target="_blank" rel="noopener"' : ""}>${esc(p.label)}</a>`).join("")}</nav>
+        `<a href="${p.href}"${p.href === here ? ' aria-current="page"' : ""}${p.external ? ' target="_blank" rel="noopener"' : ""}>${esc(p.label)}</a>`).join("")}<a href="${S.website}" target="_blank" rel="noopener">francescasotgiu.com ↗</a></nav>
     </div></header>`;
   }
   function footer() {
-    return `<footer class="site-footer"><div class="wrap"><span>${esc(S.course)}</span><span>${esc(S.cohort)}</span></div></footer>`;
+    return `<footer class="site-footer"><div class="wrap"><span>${esc(S.course)} · <a href="${S.website}" target="_blank" rel="noopener">francescasotgiu.com</a></span><span>${esc(S.cohort)}</span></div></footer>`;
   }
   document.addEventListener("DOMContentLoaded", () => {
     const h = document.getElementById("site-header");
