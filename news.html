@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Marketing Decisions in the News</title>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="site.css?v=20261017">
+</head>
+<body>
+<div id="site-header"></div>
+<nav class="toc" aria-label="Cases">
+  <div class="wrap">
+    <span class="toc-title">In the news</span>
+    <ol id="news-toc"></ol>
+  </div>
+</nav>
+<main class="wrap">
+  <header class="bk-head">
+    <span class="label" id="news-label"></span>
+    <h1 id="news-title"></h1>
+    <p id="news-intro"></p>
+    <div class="bk-actions">
+      <a class="btn primary" href="#n1">Start with case 1</a>
+    </div>
+  </header>
+  <div id="news-cases"></div>
+  <div id="news-practice"></div>
+</main>
+<div id="site-footer"></div>
+<script src="news-cases.js?v=20261017"></script>
+<script src="site.js?v=20261017"></script>
+<script>
+  (function () {
+    const S = window.SITE, N = window.NEWS, esc = S.esc;
+    const embed = S.canEmbed();
+    document.getElementById("news-label").textContent = N.label;
+    document.getElementById("news-title").textContent = N.title;
+    document.getElementById("news-intro").textContent = N.intro;
+    document.getElementById("news-toc").innerHTML = N.cases.map((c) =>
+      '<li><a href="#n' + c.n + '" data-case="n' + c.n + '" title="' + esc(c.title) + '">Case ' + c.n + '</a></li>').join("");
+
+    function videoHTML(s) {
+      if (!embed || !s.video) return "";
+      return '<div class="news-video"><iframe src="https://www.youtube-nocookie.com/embed/' + esc(s.video) +
+        '" title="' + esc(s.label) + '" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>';
+    }
+    document.getElementById("news-cases").innerHTML = N.cases.map((c, i) => {
+      const prev = N.cases[i - 1], next = N.cases[i + 1];
+      const body = c.blocks.map((b) => b.q
+        ? '<p class="news-q"><span class="label">Your question</span>' + esc(b.q) + '</p>'
+        : '<p class="news-p">' + esc(b.p) + '</p>').join("");
+      const vids = c.sources.filter((s) => s.video).map(videoHTML).join("");
+      const videos = vids ? '<div class="news-videos">' + vids + '</div>' : "";
+      const sources = '<ul class="news-sources">' + c.sources.map((s) =>
+        '<li><a href="' + esc(s.url) + '" target="_blank" rel="noopener"><span class="site">' + esc(s.site) + '</span>' + esc(s.label) + ' ↗</a></li>').join("") + '</ul>';
+      const related = c.related ? '<p class="news-related"><a href="' + esc(c.related.href) + '">' + esc(c.related.label) + ' ›</a></p>' : "";
+      return '<article class="news-case" id="n' + c.n + '">' +
+        '<div class="news-head"><span class="news-n">' + c.n + '</span><div><span class="label">' + esc(c.tag) + '</span><h2>' + esc(c.title) + '</h2></div></div>' +
+        '<div class="news-body">' + body + videos + '<span class="label news-src-label">Read and watch</span>' + sources + related + '</div>' +
+        '<nav class="case-nav" aria-label="Cases">' +
+          (prev ? '<a href="#n' + prev.n + '">← Case ' + prev.n + '</a>' : '<span></span>') +
+          (next ? '<a href="#n' + next.n + '">Case ' + next.n + ' →</a>' : (S.practice ? '<a href="#news-practice">Further practice →</a>' : '<span></span>')) +
+        '</nav></article>';
+    }).join("");
+    if (S.practiceBox) document.getElementById("news-practice").innerHTML = S.practiceBox();
+
+    if ("IntersectionObserver" in window) {
+      const links = [...document.querySelectorAll("#news-toc a")];
+      const obs = new IntersectionObserver((entries) => entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        links.forEach((a) => a.classList.toggle("active", a.dataset.case === en.target.id));
+      }), { rootMargin: "-30% 0px -60% 0px" });
+      document.querySelectorAll(".news-case").forEach((el) => obs.observe(el));
+    }
+    if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) setTimeout(() => t.scrollIntoView(), 50); }
+  })();
+</script>
+</body>
+</html>

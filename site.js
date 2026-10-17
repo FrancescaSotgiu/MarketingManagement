@@ -7,6 +7,7 @@ window.SITE = {
   website: "https://francescasotgiu.com",
   pages: [
     { href: "./", label: "Home", desc: "Start here." },
+    { href: "news.html", label: "In the news", desc: "Nine short cases from this term's news, each ending with one question to discuss." },
     { href: "six-decisions.html", label: "Six decisions", desc: "The slides of the six cases from Lectures 1 to 3." },
     { href: "https://francescasotgiu.com/tools/marketing-decision-studio/", label: "Decision Studio", external: true, desc: "Work through a real marketing decision step by step, from the environment to the marketing mix and its outcomes." },
     { href: "quizzes.html", label: "Quizzes", desc: "Test yourself before and after each lecture." }

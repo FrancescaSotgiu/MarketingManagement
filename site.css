@@ -219,3 +219,29 @@ body.editing { padding-bottom: 76px; }
 .practice-box .btn.primary { background: #fff; color: var(--ink); border-color: #fff; flex: 0 0 auto; }
 .practice-box .btn.primary:hover { background: #e8e8ed; }
 @media (max-width: 640px) { .practice-box { padding: 28px; } }
+
+/* News mini cases */
+.news-case { padding-block: 56px 8px; border-top: 1px solid var(--line); display: grid; gap: 24px; scroll-margin-top: 110px; }
+.news-case:first-child { border-top: 0; }
+.news-head { display: flex; gap: 20px; align-items: flex-start; }
+.news-n { flex: 0 0 auto; width: 56px; height: 56px; border-radius: 50%; background: var(--vu); color: #fff; display: grid; place-items: center; font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.news-head .label { color: var(--vu); }
+.news-head h2 { font-size: clamp(28px, 4.4vw, 44px); margin-top: 4px; }
+.news-body { display: grid; gap: 18px; max-width: 760px; padding-left: 76px; min-width: 0; }
+.news-p { margin: 0; font-size: 19px; line-height: 1.55; color: #333336; }
+.news-q { margin: 0; background: var(--tile); border-radius: 18px; padding: 22px 26px; font-size: 22px; line-height: 1.4; font-weight: 600; letter-spacing: -0.015em; display: grid; gap: 6px; }
+.news-q .label { color: var(--vu); font-weight: 600; }
+.news-videos { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.news-video { position: relative; width: 100%; max-width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; background: #000; }
+.news-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.news-src-label { margin-top: 4px; }
+.news-sources { list-style: none; margin: -8px 0 0; padding: 0; display: grid; gap: 8px; }
+.news-sources a { display: inline-flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 16px; }
+.news-sources .site { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.news-related { margin: 0; font-size: 16px; }
+.news-case .case-nav { border-bottom: 0; padding-left: 76px; max-width: 836px; }
+@media (max-width: 640px) {
+  .news-body, .news-case .case-nav { padding-left: 0; }
+  .news-n { width: 44px; height: 44px; font-size: 20px; }
+  .news-p { font-size: 17px; } .news-q { font-size: 19px; padding: 18px 20px; }
+}

@@ -36,3 +36,7 @@ Add an entry to `quizzes` in `site.js` with an `id`, `title`, `lecture`, `desc` 
 ## Cite a source
 
 Add the source to `sources.js`, then write `[[id]]` in any speech, framework or case text. The page numbers the citations and lists the sources at the bottom.
+
+## Mini cases in the news
+
+`news.html` shows the cases in `news-cases.js`. To add a case, copy one block in that file, change the number, title, text ("p" for facts, "q" for the question) and sources.
